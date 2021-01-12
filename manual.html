@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        
       </head>
 <body>
     <div class="col-lg-2" style="background-color: rgb(236, 234, 234); height: 80%; border: 1px solid black; color: white; font-size: 15px; font-weight: bold;">
@@ -145,25 +144,25 @@
 
         <div class="col-lg-2" style="margin-top: 30px; margin-left: 50px;">
             <div class="checkbox" style="margin-top: -10px;">
-                <label><input type="checkbox" value="">Subtraction</label>
+                <label><input type="checkbox" value="" id="subtract">Subtraction</label>
             </div>
 
             <div class="checkbox" style="margin-top: -10px; margin-top: 10px;">
-                <label><input type="checkbox" value="" disabled>Borrowing</label>
+                <label><input type="checkbox" value="" id="Borrowing" disabled>Borrowing</label>
             </div>
 
             <div class="checkbox" style="margin-top: -10px; margin-top: 10px;">
-                <label><input type="checkbox" value="" disabled>Negative Ans.</label>
+                <label><input type="checkbox" value="" id="negativeAns" disabled>Negative Ans.</label>
             </div>
         </div>
         
         <div class="col-lg-1" style="margin-top: 10px; margin-left: -90px;">
             <div class="checkbox" style="margin-top: -10px; margin-top: 10px;">
-                <label><input type="checkbox" value="" >Decimal</label>
+                <label><input type="checkbox" value="" id="decimal">Decimal</label>
             </div>
 
             <div class="dropup">
-                <button class="btn btn-primary dropdown-toggle disabled" style="width: 120px;" type="button" data-toggle="dropdown">1
+                <button id="btn_decimal" class="btn btn-primary dropdown-toggle" style="width: 120px;" type="button" data-toggle="dropdown" disabled>1
                     <span class="caret" style="float: right; justify-content: center; margin-top: 8px;"></span>
                 </button>
                 
@@ -183,5 +182,43 @@
     $('.dropdown-menu a').on('click', function(){    
     $(this).parent().parent().prev().html($(this).html() + '<span class="caret" style="float:right; margin-top:8px;"></span>');    
 })
+
+$(function() {
+  enable_cb();
+  $("#subtract").click(enable_cb);
+  $("#Borrowing").click(enable_cb2);
+  $("#decimal").click(enable_cb3);
+});
+
+function enable_cb() {
+  if (this.checked) {
+    $("#Borrowing").removeAttr("disabled");
+  } else {
+    $("#Borrowing").attr("disabled", true);
+    $("#negativeAns").attr("disabled", true);
+    $("#Borrowing").prop("checked", false);
+    $("#negativeAns").prop("checked", false);
+  }
+}
+
+function enable_cb2() {
+  if (this.checked) {
+    $("#negativeAns").removeAttr("disabled");
+  } else {
+    $("#negativeAns").attr("disabled", true);
+    $("#negativeAns").prop("checked", false);
+  }
+}
+
+function enable_cb3() {
+  if (this.checked) {
+    console.log("Hello");
+    $("#btn_decimal").removeAttr("disabled");
+  } else {
+    $("#btn_decimal").attr("disabled", true);   
+  }
+}
+
+
 </script>
 </html>
